@@ -6,7 +6,7 @@
         <th:block layout:fragment="content">
             <main id="content">
                 <h2>회원가입</h2>
-                <form name="joinfrm" id="joinfrm" method="post">
+                <form name="joinfrm" id="joinfrm" method="post" onsubmit="return joinform()">
                     
                     <div>
                         <label for="userid">아이디</label>
@@ -43,5 +43,32 @@
                     </div>
                 </form>
             </main>
+        </th:block>
+
+<!-- 자바스크립트 코드는 끝단에 작성 -->
+        <th:block layout:fragment="script">
+            <script>
+                function joinform() {
+                    let joinfrm = document.forms['joinfrm'];
+
+                    if (joinfrm.userid.value === '') {
+                        alert('아이디를 입력하세요!!');
+                        return false;
+                    }else if (joinfrm.userpwd.value === '') {
+                        alert('비밀번호를 입력하세요!!');
+                        return false;
+                    }else if (joinfrm.name.value === '') {
+                        alert('이름을 입력하세요!!');
+                        return false;
+                    }else if(joinfrm.email.value === '') {
+                        alert('이메일을 입력하세요!!');
+                        return false;
+                    }else if(joinfrm.userpwd.value !== joinfrm.reuserpwd.value) {
+                        alert('비밀번호가 서로 일치하지 않습니다!!');
+                        return false;
+                    }
+                    return true;    // 회원정보를 정삭적으로 작성했다면
+                }
+            </script>
         </th:block>
 </html>
