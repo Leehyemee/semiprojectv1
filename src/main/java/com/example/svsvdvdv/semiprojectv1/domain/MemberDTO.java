@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data   // setter, getter, toStirng 자동 생성
 @Builder    // 롬복에 있는 빌더
-public class MemberDTO {
+public class MemberDTO {        // DB전송 객체
 
     private String userid;
     private String userpwd;

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Data   // setter, getter, toStirng 자동 생성
 @Builder    // 롬복에 있는 빌더
-public class Member {
+public class Member {       // 테이블과 1:1 대응
 
     private int mno;
     private String userid;
