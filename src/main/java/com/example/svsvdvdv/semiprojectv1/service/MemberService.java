@@ -1,5 +1,6 @@
 package com.example.svsvdvdv.semiprojectv1.service;
 
+import com.example.svsvdvdv.semiprojectv1.domain.Member;
 import com.example.svsvdvdv.semiprojectv1.domain.MemberDTO;
 import com.example.svsvdvdv.semiprojectv1.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,4 +28,14 @@ public class MemberService {
         return result == 1; // 회원정보가 테이블 저장되었는지 여부에 따라 true/false 반환
     }
 
+    public Member loginMember(MemberDTO member) {
+        Member findMember = memberMapper.findByUserid(member.getUserid());
+
+        if (findMember == null || !findMember.getUserpwd().equals(member.getUserpwd())) {
+            throw new IllegalStateException("아이디나 비밀번호가 일치하지 않습니다!!");
+
+        }
+        return findMember;
+    }
 }
+

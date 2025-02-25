@@ -12,7 +12,6 @@ public class Member {       // 테이블과 1:1 대응
     private int mno;
     private String userid;
     private String userpwd;
-    private String reuserpwd;
     private String name;
     private String email;
     private LocalDateTime regdate;

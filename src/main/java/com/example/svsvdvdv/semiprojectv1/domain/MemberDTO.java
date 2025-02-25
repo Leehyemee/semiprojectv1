@@ -9,7 +9,6 @@ public class MemberDTO {        // DB전송 객체
 
     private String userid;
     private String userpwd;
-    private String reuserpwd;
     private String name;
     private String email;
 
