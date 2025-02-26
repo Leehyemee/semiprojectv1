@@ -1,6 +1,5 @@
-package com.example.svsvdvdv.semiprojectv1;
+package com.example.svsvdvdv.semiprojectv1.member;
 
-import com.example.svsvdvdv.semiprojectv1.domain.Member;
 import com.example.svsvdvdv.semiprojectv1.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;

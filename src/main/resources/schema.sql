@@ -13,7 +13,7 @@ create table if not exists boards (
     userid varchar(18) not null,
     regdate datetime default  current_timestamp,
     thumbs int default 0,
-    view int default 0,
+    views int default 0,
     contents text not null,
     primary key(bno, userid),
     foreign key (userid) references members (userid)
