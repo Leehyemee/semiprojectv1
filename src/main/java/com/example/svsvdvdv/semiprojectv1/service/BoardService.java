@@ -8,4 +8,5 @@ public interface BoardService {
 
     List<BoardDTO> readBoard(int cpg);  // 추상메서드
 
+    int countBoard();
 }
