@@ -25,10 +25,10 @@ public class BoardServiceTest {
     @DisplayName("BoardService readall test")
     public void readAllTest() {
         // Given
-
+        int cpg = 1;    // 현재 페이지가 1일 때 게시글들을 읽어옴
 
         // when
-        List<BoardDTO> results = boardService.readBoard();
+        List<BoardDTO> results = boardService.readBoard(cpg);
 
         // Then
         assertNotNull(results);
