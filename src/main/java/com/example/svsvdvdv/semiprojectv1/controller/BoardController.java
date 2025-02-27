@@ -25,6 +25,8 @@ public class BoardController {
         log.info("board/list 호출!!");
 
         m.addAttribute("bds", boardService.readBoard(cpg));
+        m.addAttribute("cpg", cpg);
+
         return "views/board/list";
     }
 }
