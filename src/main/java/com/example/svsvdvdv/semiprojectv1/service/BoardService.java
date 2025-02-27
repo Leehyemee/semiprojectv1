@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface BoardService {
 
-    List<BoardDTO> readBoard();    // 추상메서드
+    List<BoardDTO> readBoard(int cpg);  // 추상메서드
 
 }
