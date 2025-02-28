@@ -1,5 +1,6 @@
 package com.example.svsvdvdv.semiprojectv1.service;
 
+import com.example.svsvdvdv.semiprojectv1.domain.Board;
 import com.example.svsvdvdv.semiprojectv1.domain.BoardDTO;
 import com.example.svsvdvdv.semiprojectv1.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -49,5 +50,10 @@ public class BoardServiceImpl implements BoardService {
         params.put("findkey", findkey);
 
         return boardMapper.countFindBoard(params);
+    }
+
+    @Override
+    public Board readOneBoard(int bno) {
+        return boardMapper.selectOneBoard(bno);
     }
 }

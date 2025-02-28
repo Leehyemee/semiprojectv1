@@ -1,5 +1,6 @@
 package com.example.svsvdvdv.semiprojectv1.board;
 
+import com.example.svsvdvdv.semiprojectv1.domain.Board;
 import com.example.svsvdvdv.semiprojectv1.domain.BoardDTO;
 import com.example.svsvdvdv.semiprojectv1.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -91,6 +92,22 @@ public class BoardMapperTest {
         // Then : 호출되고 난 후 결과값 확인
         log.info("result : {}", results);
         assertThat(results).isGreaterThan(0); // 결과 갯수 확인
+
+    }
+
+    @Test
+    @DisplayName("BoardMapper selectOne test")
+    void selectOneTest() {
+        // Given : 테스트에 사용할 데이터 제공
+        int bno = 3006;
+
+        // When : 데이터로 테스트할 기능 호출
+        Board result = boardMapper.selectOneBoard(bno);
+
+        // Then : 호출되고 난 후 결과값 확인
+        log.info("result : {}", result);
+        assertThat(result); // 결과 존재 여부 확인
+        assertThat(result.getUserid()).isNotNull();
 
     }
 }

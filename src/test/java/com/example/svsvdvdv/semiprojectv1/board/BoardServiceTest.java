@@ -1,5 +1,6 @@
 package com.example.svsvdvdv.semiprojectv1.board;
 
+import com.example.svsvdvdv.semiprojectv1.domain.Board;
 import com.example.svsvdvdv.semiprojectv1.domain.BoardDTO;
 import com.example.svsvdvdv.semiprojectv1.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -70,6 +71,21 @@ public class BoardServiceTest {
 
         // Then
         assertThat(results).isGreaterThan(0);
+
+    }
+
+    @Test
+    @DisplayName("BoardService readOne test")
+    public void readOneTest() {
+        // Given
+        int bno = 3006;
+
+        // when
+        Board result = boardService.readOneBoard(bno);
+
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result.getUserid()).isNotNull();
 
     }
 }
