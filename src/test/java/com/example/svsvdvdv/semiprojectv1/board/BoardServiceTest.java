@@ -3,14 +3,18 @@ package com.example.svsvdvdv.semiprojectv1.board;
 import com.example.svsvdvdv.semiprojectv1.domain.BoardDTO;
 import com.example.svsvdvdv.semiprojectv1.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
@@ -32,6 +36,40 @@ public class BoardServiceTest {
 
         // Then
         assertNotNull(results);
+
+    }
+
+    @Test
+    @DisplayName("BoardService find test")
+    public void findTest() {
+        // Given
+        int cpg = 1;
+        String findtype = "userid";
+        String findkey = "123";
+
+        // when
+        List<BoardDTO> results = boardService.findBoard(cpg, findtype, findkey);
+
+        // Then
+        assertNotNull(results);
+        assertThat(results).isNotEmpty();
+        assertThat(results.size()).isGreaterThan(0);
+
+    }
+
+    @Test
+    @DisplayName("BoardService countfind test")
+    public void countfindTest() {
+        // Given
+        int cpg = 1;
+        String findtype = "title";
+        String findkey = "SDT";
+
+        // when
+        int results = boardService.countfindBoard(findtype, findkey);
+
+        // Then
+        assertThat(results).isGreaterThan(0);
 
     }
 }
