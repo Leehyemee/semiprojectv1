@@ -111,4 +111,15 @@ public class BoardController {
         return retrunPage;
     }
 
+    @PostMapping("/cmmt")
+    public String cmmtok(NewReplyDTO newReplyDTO) {
+        String retrunPage = "redirect:/board/view?bno=" + newReplyDTO.getPno();
+
+        if (!boardService.newComment(newReplyDTO)) {
+            retrunPage = "redirect:/board/error?type=1";
+        }
+
+        return retrunPage;
+    }
+
 }
