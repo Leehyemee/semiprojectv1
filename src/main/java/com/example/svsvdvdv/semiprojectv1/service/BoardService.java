@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface BoardService {
 
-    List<BoardDTO> readBoard(int cpg);  // 추상메서드
+    BoardListDTO readBoard(int cpg);  // 추상메서드
 
-    int countBoard();
+    // int countBoard();
 
     List<BoardDTO> findBoard(int cpg, String findtype, String findkey);
 

@@ -2,6 +2,7 @@ package com.example.svsvdvdv.semiprojectv1.board;
 
 import com.example.svsvdvdv.semiprojectv1.domain.Board;
 import com.example.svsvdvdv.semiprojectv1.domain.BoardDTO;
+import com.example.svsvdvdv.semiprojectv1.domain.BoardListDTO;
 import com.example.svsvdvdv.semiprojectv1.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.AssertionsForClassTypes;
@@ -33,7 +34,8 @@ public class BoardServiceTest {
         int cpg = 1;    // 현재 페이지가 1일 때 게시글들을 읽어옴
 
         // when
-        List<BoardDTO> results = boardService.readBoard(cpg);
+        // List<BoardDTO> results = boardService.readBoard(cpg);
+        BoardListDTO results = boardService.readBoard(cpg);
 
         // Then
         assertNotNull(results);
