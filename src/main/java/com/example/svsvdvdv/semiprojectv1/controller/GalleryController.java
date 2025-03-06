@@ -2,6 +2,7 @@ package com.example.svsvdvdv.semiprojectv1.controller;
 
 import com.example.svsvdvdv.semiprojectv1.service.GalleryService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,6 +18,8 @@ public class GalleryController {
 
     @GetMapping("/list")
     public String list(Model m) {
+
+        m.addAttribute("gals", galleryService.selectGallery());
 
         return "views/gallery/list";
     }
