@@ -32,7 +32,7 @@
                     <!-- db의 컬럼명과 id는 같아야함 (schema.sql 참고) -->
                     <div class="form-floating my-2">
                         <input type="text" name="userid" id="userid" class="form-control"
-                               placeholder="아이디" readonly value="abc123">
+                               placeholder="아이디" readonly th:value="${session.loginUser.userid}">
                         <label for="userid" class="form-label">아이디</label>
                     </div>
                     
