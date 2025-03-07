@@ -27,7 +27,8 @@
         <th:block layout:fragment="content">
             <main id="content">
                 <h2>이미지 갤러리 글쓰기</h2>
-                <form name="galleryfrm" id="galleryfrm" method="post" novalidate>
+                <form name="galleryfrm" id="galleryfrm" method="post" novalidate
+                enctype="multipart/form-data">
 
                     <!-- db의 컬럼명과 id는 같아야함 (schema.sql 참고) -->
                     <div class="form-floating my-2">
