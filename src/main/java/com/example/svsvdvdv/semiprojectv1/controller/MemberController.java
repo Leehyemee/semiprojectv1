@@ -115,4 +115,10 @@ public class MemberController {
         session.invalidate(); // 세션 제거
         return "redirect:/";
     }
+
+    @GetMapping("/loginfail")
+    public String loginfail() {
+        return "views/member/loginfail";
+    }
+
 }
