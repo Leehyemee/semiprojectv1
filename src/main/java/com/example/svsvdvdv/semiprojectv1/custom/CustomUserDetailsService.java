@@ -1,4 +1,4 @@
-package com.example.svsvdvdv.semiprojectv1.config;
+package com.example.svsvdvdv.semiprojectv1.custom;
 
 import com.example.svsvdvdv.semiprojectv1.domain.User;
 import com.example.svsvdvdv.semiprojectv1.repository.UserRepository;

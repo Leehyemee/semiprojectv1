@@ -1,14 +1,18 @@
 package com.example.svsvdvdv.semiprojectv1.config;
 
+import com.example.svsvdvdv.semiprojectv1.custom.CustomAuthenticationFailureHandler;
+import com.example.svsvdvdv.semiprojectv1.custom.CustomAuthenticationSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -17,6 +21,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
+    private final CustomAuthenticationSuccessHandler successHandler;
+    private final CustomAuthenticationFailureHandler failureHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -35,7 +41,8 @@ public class SecurityConfig {
                     .passwordParameter("userpwd") // 비밀번호 매개변수 지정
                     .defaultSuccessUrl("/member/myinfo") // 로그인 성공 시 리다이렉트 URL
                     .failureUrl("/member/loginfail") // 로그인 실패 시 리다이렉트 URL
-                    .permitAll()
+                    .successHandler(successHandler)
+                    .failureHandler(failureHandler)
                 .and()
                 .logout()// 로그아웃 설정
                     .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout")) // 로그아웃 URL 지정

@@ -142,7 +142,7 @@ const submitLoginFrm = async (frm) => {
         if (response.ok) {  // 로그인이 성공했다면
             alert('로그인이 성공했습니다!!');
             location.href = '/member/myinfo';
-        } else if (response.status === 400) {
+        } else if (response.status === 401) {
             alert(await response.text());
         }else {     // 로그인이 실패했다면
             alert('로그인 실패했습니다!! 다시 시도 해주세요!');
