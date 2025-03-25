@@ -30,23 +30,13 @@ public class BoardController {
     private final GoogleRecaptchaService googleRecaptchaService;
 
     @GetMapping("/list")
-    public String list(Model m, @RequestParam(defaultValue = "1") int cpg,
-                        HttpServletResponse response) {
+    public String list(HttpServletResponse response) {
         // 클라이언트 캐시 케어
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Expires", "0");
 
-        // RequestParam에 defaultValue를 이용하면
-        // cpg 매개변수가 전달되지 않을 경우 기본값인 1이 전달됨.
         log.info("board/list 호출!!");
-
-        m.addAttribute("bdsdto", boardService.readBoard(cpg));
-        // 아래 네 줄을 위 한줄로 몰아씀
-        // m.addAttribute("bds", boardService.readBoard(cpg));
-        // m.addAttribute("cpg", cpg);
-        // m.addAttribute("stblk", ((cpg - 1) / 10) * 10 + 1);
-        // m.addAttribute("cntpg", boardService.countBoard());
 
         return "views/board/list";
 
