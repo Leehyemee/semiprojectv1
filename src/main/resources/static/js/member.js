@@ -131,12 +131,13 @@ const validLogin = (form) => {
 }
 
 // 로그인 폼 제출
-const submitLoginFrm = async (frm) => {
+const submitLoginFrm = async (frm, token, headerName) => {
     //frm.userpwd.value = await hashPassword(frm.userpwd.value);
     const formData = new FormData(frm);
 
     fetch('/member/login', {
         method: 'POST',
+        headers: { [headerName]: token },
         body: formData
     }).then(async response => {
         if (response.ok) {  // 로그인이 성공했다면
