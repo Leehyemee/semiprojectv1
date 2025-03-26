@@ -1,5 +1,6 @@
 package com.example.svsvdvdv.semiprojectv1.controller;
 
+
 import com.example.svsvdvdv.semiprojectv1.domain.NewBoardDTO;
 import com.example.svsvdvdv.semiprojectv1.domain.NewReplyDTO;
 import com.example.svsvdvdv.semiprojectv1.service.BoardService;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 @Slf4j
 @Controller
 @RequestMapping("/board")
@@ -31,16 +31,16 @@ public class BoardController {
 
     @GetMapping("/list")
     public String list(HttpServletResponse response) {
-        // 클라이언트 캐시 케어
+        // 클라이언트 캐시 제어
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache");
-        response.setHeader("Expires", "0");
+        response.setDateHeader("Expires", 0);
 
         log.info("board/list 호출!!");
 
         return "views/board/list";
-
     }
+
     @GetMapping("/find")
     public String find() {
 
@@ -57,7 +57,7 @@ public class BoardController {
     public String write(Model m, Authentication authentication) {
         String returnPage = "redirect:/member/login";
 
-        if (authentication!= null && authentication.isAuthenticated()) {
+        if (authentication != null && authentication.isAuthenticated()) {
             // 시스템 환경변수에 저장된 사이트키 불러옴
             m.addAttribute("sitekey", System.getenv("recaptcha.sitekey"));
             returnPage = "views/board/write";
@@ -67,10 +67,10 @@ public class BoardController {
     }
 
     @PostMapping("/write")
-    public ResponseEntity<?> writeOk(NewBoardDTO newBoardDTO,
+    public ResponseEntity<?> writeok(NewBoardDTO newBoardDTO,
                                      @RequestParam("g-recaptcha-response") String gRecaptchaResponse) {
         ResponseEntity<?> response = ResponseEntity.internalServerError().build();
-        log.info("submit된 게시글 정보 : {}", newBoardDTO);
+        log.info("submit된 게시글 정보 : {}" , newBoardDTO);
         log.info("submit된 recaptcha 응답코드 : {}", gRecaptchaResponse);
 
         try {
@@ -89,25 +89,25 @@ public class BoardController {
     }
 
     @PostMapping("/reply")
-    public String repleok(NewReplyDTO newReplyDTO) {
-        String retrunPage = "redirect:/board/view?bno=" + newReplyDTO.getPno();
+    public String replyok(NewReplyDTO newReplyDTO) {
+        String returnPage = "redirect:/board/view?bno=" + newReplyDTO.getPno();
 
         if (!boardService.newReply(newReplyDTO)) {
-            retrunPage = "redirect:/board/error?type=1";
+            returnPage = "redirect:/board/error?type=1";
         }
 
-        return retrunPage;
+        return returnPage;
     }
 
     @PostMapping("/cmmt")
     public String cmmtok(NewReplyDTO newReplyDTO) {
-        String retrunPage = "redirect:/board/view?bno=" + newReplyDTO.getPno();
+        String returnPage = "redirect:/board/view?bno=" + newReplyDTO.getPno();
 
         if (!boardService.newComment(newReplyDTO)) {
-            retrunPage = "redirect:/board/error?type=1";
+            returnPage = "redirect:/board/error?type=1";
         }
 
-        return retrunPage;
+        return returnPage;
     }
 
 }

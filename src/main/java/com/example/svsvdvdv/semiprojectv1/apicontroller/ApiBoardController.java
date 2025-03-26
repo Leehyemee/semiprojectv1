@@ -38,7 +38,7 @@ public class ApiBoardController {
     @GetMapping("/view")
     public ResponseEntity<BoardReplyDTO> view(int bno) {
 
-        BoardReplyDTO boardReplyDTO = boardService.readOneBoardReply(bno);
+       BoardReplyDTO boardReplyDTO = boardService.readOneBoardReply(bno);
 
         return new ResponseEntity<>(boardReplyDTO, HttpStatus.OK);
     }
