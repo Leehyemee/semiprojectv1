@@ -31,7 +31,7 @@ public class SecurityConfig {
                     .userDetailsService(userDetailsService) // userDetailsService 설정
                     .authorizeRequests() // URL 기반 인가 설정
                     .antMatchers("/user/**").hasRole("USER") // USER 권한 사용자만 접근 가능
-                    .antMatchers("/member/logout", "/member/myinfo", "/board/write", "/gallery/write").authenticated() // 인증 받은 사용자만 접근 가능
+                    .antMatchers("/member/logout", "/member/myinfo", "/board/write", "/gallery/write", "/board/reply").authenticated() // 인증 받은 사용자만 접근 가능
                     .antMatchers("/**", "/member/**", "/gallery/**", "/board/**").permitAll() // 인증/인가 여부와 상관없이 접근 가능
                     .antMatchers("/css/**", "/js/**", "/image/**", "/favicon.ico").permitAll() // 인증/인가 여부와 상관없이 접근 가능
                 .and()
