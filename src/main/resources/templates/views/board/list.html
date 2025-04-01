@@ -94,7 +94,7 @@
 
                 const loadBoardList = (data) => {
                     const tableBody = document.querySelector('#boardlistbody');
-                    if (!Array.isArray(data.bdlist) || data.bdlist/length === 0) {
+                    if (!Array.isArray(data.bdlist) || data.bdlist.length === 0) {
                         tableBody.innerHTML += '<tr><td colspan="6">게시글이 없어요!!</td></tr>';
                         return;
                     }
