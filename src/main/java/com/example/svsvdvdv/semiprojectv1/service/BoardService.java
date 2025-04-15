@@ -1,24 +1,27 @@
 package com.example.svsvdvdv.semiprojectv1.service;
 
-import com.example.svsvdvdv.semiprojectv1.domain.*;
+import com.example.svsvdvdv.semiprojectv1.domain.BoardListDTO;
+import com.example.svsvdvdv.semiprojectv1.domain.BoardReplyDTO;
+import com.example.svsvdvdv.semiprojectv1.domain.NewBoardDTO;
+import com.example.svsvdvdv.semiprojectv1.domain.NewReplyDTO;
 
-import java.util.List;
+import java.util.Map;
 
 public interface BoardService {
 
-    BoardListDTO readBoard(int cpg);  // 추상메서드
+    BoardListDTO readBoard(int cpg);
 
     BoardReplyDTO readOneBoardReply(int bno);
 
-    List<BoardDTO> findBoard(int cpg, String findtype, String findkey);
+    BoardListDTO findBoard(int cpg, String findtype, String findkey);
 
-    int countfindBoard(String findtype, String findkey);
+    int countfindBoard(Map<String, Object> params);
 
     //Board readOneBoard(int bno);
 
     //void readOneView(int bno);
 
-    boolean newBoard(NewBoardDTO newBoard);
+    boolean newBoard(NewBoardDTO newBoardDTO);
 
     boolean newReply(NewReplyDTO newReplyDTO);
 

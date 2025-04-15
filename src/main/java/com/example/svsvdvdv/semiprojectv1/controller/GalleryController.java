@@ -7,6 +7,7 @@ import com.example.svsvdvdv.semiprojectv1.service.GoogleRecaptchaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -56,11 +57,14 @@ public class GalleryController {
     }
 
     @GetMapping("/write")
-    public String write(Model m) {
+    public String write(Model m, Authentication authentication) {
+        String returnPage = "views/gallery/write";
 
-        m.addAttribute("sitekey", System.getenv("recaptcha.sitekey"));
-
-        return "views/gallery/write";
+        if (authentication!= null && authentication.isAuthenticated()) {
+            m.addAttribute("sitekey", System.getenv("recaptcha.sitekey"));
+            returnPage =  "views/gallery/write";
+        }
+        return returnPage;
     }
 
     @PostMapping("/write")

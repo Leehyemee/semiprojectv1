@@ -89,8 +89,8 @@ const hashPassword = async (passwd) => {
 // await : 비동기 함수의 처리가 완료될 때까지 기다렸다가 결과를 받아옴
 const submitJoinFrm = async (frm) => {
     // Web Crypto API로 비밀번호 암호화
-    frm.userpwd.value = await hashPassword(frm.userpwd.value);
-    console.log(frm.userpwd.value);
+    //frm.userpwd.value = await hashPassword(frm.userpwd.value);
+    //console.log(frm.userpwd.value);
 
     // 폼에 입력된 데이터를 formData 객체로 초기화
     const formData = new FormData(frm);
@@ -131,19 +131,19 @@ const validLogin = (form) => {
 }
 
 // 로그인 폼 제출
-const submitLoginFrm = async (frm) => {
-
-    frm.userpwd.value = await hashPassword(frm.userpwd.value);
+const submitLoginFrm = async (frm, token, headerName) => {
+    //frm.userpwd.value = await hashPassword(frm.userpwd.value);
     const formData = new FormData(frm);
 
     fetch('/member/login', {
         method: 'POST',
+        headers: { [headerName]: token },
         body: formData
     }).then(async response => {
         if (response.ok) {  // 로그인이 성공했다면
-            alert('로그인이 성공했습니다!!');
+            alert(await response.text());
             location.href = '/member/myinfo';
-        } else if (response.status === 400) {
+        } else if (response.status === 401) {
             alert(await response.text());
         }else {     // 로그인이 실패했다면
             alert('로그인 실패했습니다!! 다시 시도 해주세요!');

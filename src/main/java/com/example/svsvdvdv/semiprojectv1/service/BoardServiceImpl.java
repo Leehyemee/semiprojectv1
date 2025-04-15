@@ -39,29 +39,30 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardDTO> findBoard(int cpg, String findtype, String findkey) {
-        Map<String,Object> params = new HashMap<>();
-        params.put("stnum", (cpg - 1) * pageSize);
+    public BoardListDTO findBoard(int cpg, String findtype, String findkey) {
+        int stnum = (cpg - 1) * pageSize;
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("stnum", stnum);
         params.put("pageSize", pageSize);
         params.put("findtype", findtype);
         params.put("findkey", findkey);
 
-        return boardMapper.selectFindBoard(params);
+        int totalItems = countfindBoard(params);
+        List<BoardDTO> boards = boardMapper.selectFindBoard(params);
+
+        return new BoardListDTO(cpg, totalItems, pageSize, boards);
     }
 
     @Override
-    public int countfindBoard(String findtype, String findkey) {
-        Map<String,Object> params = new HashMap<>();
-        params.put("pageSize", pageSize);
-        params.put("findtype", findtype);
-        params.put("findkey", findkey);
+    public int countfindBoard(Map<String, Object> params) {
 
         return boardMapper.countFindBoard(params);
     }
 
     //@Override
     //public Board readOneBoard(int bno) {
-    //    return boardMapper.selectOneBoard(bno);
+    //     return boardMapper.selectOneBoard(bno);
     //}
 
     //@Override
@@ -91,6 +92,4 @@ public class BoardServiceImpl implements BoardService {
         int result = boardMapper.insertComment(newReplyDTO);
         return result > 0;
     }
-
-
 }
