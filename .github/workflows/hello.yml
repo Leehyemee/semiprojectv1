@@ -17,4 +17,4 @@ jobs:
         run: date
 
       - name: show current directory contents
-        run: ls - al
+        run: ls -al
