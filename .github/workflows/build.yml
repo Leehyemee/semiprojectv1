@@ -1,8 +1,8 @@
-name: : Build Spring Boot app with Maven
+name: Build Spring Boot app with Maven
 
 on:
   push:
-    branch: [master]
+    branches: [master]
 
 jobs:
   hello:
@@ -26,4 +26,4 @@ jobs:
 
       # 빌드한 결과물 확인
       - name: list target directory
-        run: la -la target
+        run: ls -la target
