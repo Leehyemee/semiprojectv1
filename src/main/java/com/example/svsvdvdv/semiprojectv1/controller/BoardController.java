@@ -48,7 +48,7 @@ public class BoardController {
     }
 
     @GetMapping("/view")
-    public String view() {
+    public String view(Authentication authentication){
 
         return "views/board/view";
     }
