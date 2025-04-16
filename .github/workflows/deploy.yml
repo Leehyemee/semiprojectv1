@@ -34,7 +34,7 @@ jobs:
           mkdir -p deploy
           cp target/*.jar deploy/application.jar
           cp scripts/deploy.sh deploy/
-          ls - al deploy
+          ls -al deploy
 
       # SSH로 EC2에 파일 전송 (home/ubuntu/deploy)
       # AWS EC2 보안그룹 상에 ssh 22 포트 접속을 개방!
